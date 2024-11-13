@@ -7,4 +7,13 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+
+  # resources :restaurants
+  root to: "restaurants#index"
+
+  # Routes for restaurants
+  resources :restaurants, only: [:index, :show, :new, :create] do
+    # Nested routes for reviews under restaurants
+    resources :reviews, only: [:new, :create]
+  end
 end
